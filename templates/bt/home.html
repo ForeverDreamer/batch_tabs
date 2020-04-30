@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    欢迎使用批量打开网页工具
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">欢迎使用批量打开网页工具</h1>
+    <form>
+      <div class="form-group">
+        <label for="urlTextarea">请配置需要打开的网址，每个网址占一行：</label>
+        <textarea class="form-control" id="urlTextarea" rows="20"></textarea>
+      </div>
+        <button id="openBtn" type="button" class="btn btn-primary btn-lg btn-block w-25 m-auto">批量打开网页</button>
+    </form>
+{% endblock %}
