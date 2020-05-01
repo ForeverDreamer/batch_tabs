@@ -10,7 +10,12 @@
     <form>
       <div class="form-group">
         <label for="urlTextarea">请配置需要打开的网址，每个网址占一行：</label>
-        <textarea class="form-control" id="urlTextarea" rows="20"></textarea>
+        <textarea
+                id="urlTextarea"
+                class="form-control"
+                rows="20"
+                placeholder="{{ placeholder }}">
+        </textarea>
       </div>
         <button id="openBtn" type="button" class="btn btn-primary btn-lg btn-block w-25 m-auto">批量打开网页</button>
     </form>

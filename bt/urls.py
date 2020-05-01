@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 # from django.conf import settings
 # from django.conf.urls.static import static
+from django.contrib.staticfiles.views import serve
 
 from .views import home_view
 
 urlpatterns = [
     path('', home_view, name='home'),
+    path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
     path('admin/', admin.site.urls),
     path('url/', include(('url.urls', 'url'), namespace='url')),
 ]
