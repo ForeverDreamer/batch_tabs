@@ -27,4 +27,22 @@ $(function () {
         .catch( error => {
             console.log(error);
         });
+    $('#collectstaticBtn').click(event => {
+        axios.post('/cmd/collectstatic/')
+            .then( response => {
+                console.log(response);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+    })
+    $('#migrateBtn').click(event => {
+        axios.post('/cmd/migrate/')
+            .then( response => {
+                console.log(response);
+            })
+            .catch( error => {
+                console.log(error);
+            });
+    })
 })

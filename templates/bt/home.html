@@ -8,15 +8,28 @@
 {% block content %}
     <h1 class="text-center">欢迎使用批量打开网页工具</h1>
     <form>
-      <div class="form-group">
-        <label for="urlTextarea">请配置需要打开的网址，每个网址占一行：</label>
-        <textarea
-                id="urlTextarea"
-                class="form-control"
-                rows="20"
-                placeholder="{{ placeholder }}">
-        </textarea>
-      </div>
-        <button id="openBtn" type="button" class="btn btn-primary btn-lg btn-block w-25 m-auto">批量打开网页</button>
+        <div class="form-group">
+            <label for="urlTextarea">请配置需要打开的网址，每个网址占一行：</label>
+            <textarea
+                    id="urlTextarea"
+                    class="form-control"
+                    rows="20"
+                    placeholder="{{ placeholder }}">
+            </textarea>
+        </div>
+        <div class="d-flex justify-content-around align-items-center">
+            <!-- <button id="openBtn" type="button" class="btn btn-primary btn-lg btn-block w-25 m-auto"> -->
+            <button id="openBtn" type="button" class="btn btn-primary btn-lg w-25">
+                批量打开网页
+            </button>
+            <!-- <button id="testBtn" type="button" class="btn btn-success btn-lg btn-block w-25 mx-auto mt-2"> -->
+            <button id="collectstaticBtn" type="button" class="btn btn-success btn-lg w-25">
+                collectstatic
+            </button>
+            <button id="migrateBtn" type="button" class="btn btn-success btn-lg w-25">
+                migrate
+            </button>
+        </div>
+
     </form>
 {% endblock %}

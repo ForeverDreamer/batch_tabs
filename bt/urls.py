@@ -26,6 +26,7 @@ urlpatterns = [
     path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
     path('admin/', admin.site.urls),
     path('url/', include(('url.urls', 'url'), namespace='url')),
+    path('cmd/', include(('cmd_tool.urls', 'cmd_tool'), namespace='cmd_tool')),
 ]
 
 # if settings.DEBUG:

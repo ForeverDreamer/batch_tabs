@@ -26,4 +26,4 @@ class BatchTabsAPIView(APIView):
             Url.objects.create(url=url)
             webbrowser.open_new_tab(url)
 
-        return Response({'msg': '命令接收成功'}, status=status.HTTP_200_OK)
+        return Response({'msg': 'BatchTabs命令接收成功'}, status=status.HTTP_200_OK)
