@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+PROJECT_NAME = 'bt'
+
 
 # Application definition
 
@@ -125,7 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets', "static")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'assets', "static")
 
 # http://127.0.0.1:8000/static/Kitsunebi_v1.8.0，django会自动搜索匹配download目录下的文件
 STATICFILES_DIRS = [
@@ -134,4 +136,68 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'assets', 'media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {pathname} {funcName} {lineno} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {asctime} {funcName} {lineno} {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'bt_file': {
+            'level': 'WARNING',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(os.path.dirname(BASE_DIR), "log", "bt.log"),
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'delay': True,
+            'formatter': 'verbose'
+        },
+        'django_file': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(os.path.dirname(BASE_DIR), "log", "django.log"),
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'delay': True,
+            'formatter': 'verbose'
+        },
+        'django_console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        'bt': {
+            'handlers': ['bt_file', 'mail_admins'],
+            # 'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['django_file', 'django_console', 'mail_admins'],
+            'level': 'INFO',
+            # 'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        },
+    },
+}
