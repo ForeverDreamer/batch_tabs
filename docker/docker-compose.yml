@@ -9,7 +9,6 @@ services:
       PYTHONPATH: '/app/src/'
     volumes:
       - "../log:/app/log"
-      # - "../assets:/app/assets/"
     command: ["src/bt/wsgi.py",
               "--https-port", "443",
               "--https-only",
@@ -25,11 +24,16 @@ services:
     ports:
       - "8080:8080"
       - "443:443"
-  web_static:
-    build:
-      context: ..
-      dockerfile: docker/nginx.dockerfile
-    ports:
-      - "80:80"
-    depends_on:
-      - web_backend
+  # https端口只能是443，nginx不能和apache部署在同一台服务器
+#  web_static:
+#    build:
+#      context: ..
+#      dockerfile: docker/nginx.dockerfile
+#    volumes:
+#      - "../assets:/usr/share/nginx/html"
+#    ports:
+#      # 官方镜像默认暴露80端口
+#      # - "80:80"
+#      - "443:443"
+#    depends_on:
+#      - web_backend

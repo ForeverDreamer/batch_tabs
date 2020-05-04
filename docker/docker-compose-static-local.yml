@@ -9,7 +9,7 @@ services:
       PYTHONPATH: '/app/src/'
     volumes:
       - "../log:/app/log"
-      # - "../assets:/app/assets/"
+      - "../assets:/app/assets"
     command: ["src/bt/wsgi.py",
               "--https-port", "443",
               "--https-only",
@@ -20,7 +20,8 @@ services:
               # "--ssl-ca-certificate-file", "./letsencrypt/live/itman.icu/cert.pem",
               # "--ssl-verify-client", "/admin/",
               # "--document-root", "/app/static_in_env/",
-              # "--url-alias", "/d/", "/app/download/",
+              "--url-alias", "/static/", "/app/assets/static/",
+              "--url-alias", "/media/", "/app/assets/media/",
               "--port", "8080"]
     ports:
       - "8080:8080"
