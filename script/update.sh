@@ -24,7 +24,7 @@ else
     sudo chown -R $USER:$USER ${HOME}/${PROJ_DIR}/letsencrypt
 fi
 
-cp ${HOME}/secret/* ${HOME}/${PROJ_DIR}/src/bt/
+cp ${HOME}/bt_secret/* ${HOME}/${PROJ_DIR}/src/bt/
 
 cd ${HOME}/${PROJ_DIR}/docker
 
