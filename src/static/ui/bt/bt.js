@@ -30,7 +30,9 @@ new Vue({
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.$alert(error + ', 请联系客服处理!', '程序错误', {
+                      confirmButtonText: '确定'
+                    });
                 })
         },
         openTabs() {
@@ -42,30 +44,45 @@ new Vue({
             axios
                 .post('/url/open/', {urls})
                 .then((response) => {
-                    console.log(response)
+                    this.$message({
+                        message: '命令执行成功!',
+                        type: 'success'
+                    });
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.$alert(error + ', 请联系客服处理!', '程序错误', {
+                      confirmButtonText: '确定'
+                    });
                 })
         },
         collectstatic() {
             axios
                 .post('/cmd/collectstatic/')
                 .then((response) => {
-                    console.log(response)
+                    this.$message({
+                        message: '命令执行成功!',
+                        type: 'success'
+                    });
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.$alert(error + ', 请联系客服处理!', '程序错误', {
+                      confirmButtonText: '确定'
+                    });
                 })
         },
         migrate() {
             axios
                 .post('/cmd/migrate/')
                 .then((response) => {
-                    console.log(response)
+                    this.$message({
+                        message: '命令执行成功!',
+                        type: 'success'
+                    });
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.$alert(error + ', 请联系客服处理!', '程序错误', {
+                      confirmButtonText: '确定'
+                    });
                 })
         }
     }
