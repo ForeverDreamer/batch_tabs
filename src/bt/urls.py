@@ -23,9 +23,10 @@ from django.views.generic import RedirectView
 from .views import home_view
 
 urlpatterns = [
-    # path('', home_view, name='home'),
+    path('', home_view, name='home'),
     # url重定向简化用户输入,以后增加其它功能模块全部要这样处理,优化用户体验
-    path('', RedirectView.as_view(permanent=True, url='static/ui/bt/vue.html')),
+    path('tab', RedirectView.as_view(permanent=True, url='static/ui/tab/tab.html')),
+    path('cmd', RedirectView.as_view(permanent=True, url='static/ui/cmd/cmd.html')),
     # path('', serve, {'path': 'ui/bt/vue.html'}),
     path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
     path('admin/', admin.site.urls),

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <!-- 缺失资源下载链接：https://unpkg.com/browse/element-ui@2.13.1/，找到相应文件后，点击'View Raw'直接下载或保存-->
+    <!-- 下载到本地后，Ctrl+f 找到@font-face，修改字体加载路径 -->
+    <!-- @font-face{font-family:element-icons;src:url(../fonts/element-icons.woff) format("woff"),
+    url(../fonts/element-icons.ttf) format("truetype");font-weight:400;font-display:"auto";font-style:normal} -->
+    <link type="text/css" rel="stylesheet" href="../../css/element-ui.css"/>
+    <!-- Required Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap-vue.css"/>
+    <link type="text/css" rel="stylesheet" href="tab.css"/>
+    <!-- Load polyfills to support older browsers -->
+    <script src="../../js/polyfill.min.js"></script>
+    <!-- Required scripts -->
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/bootstrap-vue.js"></script>
+    <script src="../../js/element-ui.js"></script>
+    <script src="../../js/axios.min.js"></script>
+</head>
+
+<body>
+<div id="app" class="container">
+    <h1 class="text-center">欢迎使用批量打开网页工具</h1>
+    <p>请配置需要打开的网址，每个网址占一行：</p>
+    <el-form ref="form" :model="form" label-width="0px">
+        <el-form-item>
+            <el-input
+                    v-model="form.textarea"
+                    type="textarea"
+                    :rows="22"
+                    placeholder="请输入网址"
+            >
+            </el-input>
+        </el-form-item>
+        <el-form-item>
+            <div class="d-flex justify-content-around align-items-center">
+                <el-button type="primary" class="w-25" @click="openTabs">
+                    批量打开网页
+                </el-button>
+                <el-button type="primary" class="w-25" @click="collectstatic">
+                    collectstatic
+                </el-button>
+                <el-button type="primary" class="w-25" @click="migrate">
+                    migrate
+                </el-button>
+            </div>
+        </el-form-item>
+    </el-form>
+</div>
+<script src="tab.js"></script>
+</body>
+</html>

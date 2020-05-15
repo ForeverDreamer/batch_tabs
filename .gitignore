@@ -6,7 +6,6 @@ __pycache__
 temp/
 assets/
 log/
-download/
 
 # pycharm proj conf
 .idea
