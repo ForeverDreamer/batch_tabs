@@ -25,7 +25,7 @@ SECRET_KEY = '+3*k+&@sm#bz66!5r90j%%p_w=10^$@cnrzn*)1-rw2z&h8oi-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.31.124']
 
 PROJECT_NAME = 'bt'
 
@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     # Local apps
-    'url.apps.UrlConfig',
-    'cmd_tool.apps.CmdToolConfig',
+    # 'url.apps.UrlConfig',
+    # 'cmd_tool.apps.CmdToolConfig',
+    'url',
+    'cmd_tool',
 ]
 
 MIDDLEWARE = [
@@ -132,14 +134,16 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'assets', "static")
 
 # 只适用于debut=True时，django会自动搜索匹配列表目录下的文件(但只搜索一层目录，不会搜索子目录)，
 # debug=False时只能通过Apache或nginx配置路径映射
-# http://127.0.0.1:8888/static/1.txt，定位的是src/download/1.txt
 # http://127.0.0.1:8888/static/d/d.txt，定位的是src/static/d/d.txt
 STATICFILES_DIRS = [
     # os.path.join(os.path.dirname(BASE_DIR), "frontend"),
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "download"),
+    # 此时http://127.0.0.1:8888/static/download/1.txt，定位的是src/download/1.txt
+    ('download', os.path.join(BASE_DIR, "download")),
+    # 此时http://127.0.0.1:8888/static/1.txt，定位的是src/download/1.txt
+    # os.path.join(BASE_DIR, "download"),
     # nuxt build之后，把_nuxt目录移动到和index.html同一级目录，删除nuxt打包产生的static目录
-    os.path.join(BASE_DIR, "dist"),
+    os.path.join(BASE_DIR, "nuxt"),
 ]
 
 # MEDIA_URL = '/media/'

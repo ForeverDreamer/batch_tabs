@@ -7,6 +7,9 @@ temp/
 assets/
 log/
 dist/
+build/
+nuxt/
+download/
 
 # pycharm proj conf
 .idea

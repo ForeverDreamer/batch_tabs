@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.staticfiles.views import serve
 from django.views.generic import RedirectView
 from django.views.generic import TemplateView
@@ -31,11 +31,16 @@ urlpatterns = [
     # path('tab', RedirectView.as_view(permanent=True, url='static/ui/tab/tab.html')),
     # path('cmd', RedirectView.as_view(permanent=True, url='static/ui/cmd/cmd.html')),
     # path('', serve, {'path': 'ui/bt/vue.html'}),
-    path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
+    # pyinstaller打包发布时需要映射路径(/static/favicon.ico -> /nuxt/favicon.ico)
+    path('favicon.ico', serve, {'path': 'favicon.ico'}),
+    # path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
     # path('admin/', admin.site.urls),
     path('url/', include(('url.urls', 'url'), namespace='url')),
     path('cmd/', include(('cmd_tool.urls', 'cmd_tool'), namespace='cmd_tool')),
 ]
+
+# pyinstaller打包发布时需要映射路径(/static/ -> /nuxt/)
+# urlpatterns += static(settings.STATIC_URL, document_root='nuxt')
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

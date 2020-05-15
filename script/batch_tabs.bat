@@ -1,0 +1,1 @@
+batch_tabs.exe runserver localhost:8888

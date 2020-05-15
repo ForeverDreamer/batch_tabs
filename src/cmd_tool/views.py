@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+# pyinstaller打包后不可行
 class CollectstaticAPIView(APIView):
     def post(self, *args, **kwargs):
         # subprocess此模块用于代替一些老旧的模块与功能，例如：os.system, os.spawn*
@@ -15,6 +16,7 @@ class CollectstaticAPIView(APIView):
         return Response({'msg': 'Collectstatic命令接收成功'}, status=status.HTTP_200_OK)
 
 
+# pyinstaller打包后不可行
 class MigrateAPIView(APIView):
     def post(self, *args, **kwargs):
         subprocess.run(['python', 'manage.py', 'makemigrations'])
