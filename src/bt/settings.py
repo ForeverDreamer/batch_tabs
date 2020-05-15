@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third apps
-    # 'corsheaders',
+    'corsheaders',
     'rest_framework',
     # Local apps
     'url.apps.UrlConfig',
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'bt.urls'
 
@@ -66,6 +66,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,7 +138,8 @@ STATICFILES_DIRS = [
     # os.path.join(os.path.dirname(BASE_DIR), "frontend"),
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "download"),
-    os.path.join(BASE_DIR, "d"),
+    # nuxt build之后，把_nuxt目录移动到和index.html同一级目录，删除nuxt打包产生的static目录
+    os.path.join(BASE_DIR, "dist"),
 ]
 
 # MEDIA_URL = '/media/'

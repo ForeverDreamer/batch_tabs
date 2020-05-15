@@ -48,7 +48,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:22333'
+    baseURL: process.env.BASE_URL || 'http://localhost:8888'
   },
   bootstrapVue: {
     icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
@@ -58,6 +58,7 @@ export default {
    */
   build: {
     transpile: [/^element-ui/],
+    publicPath: '/static/_nuxt/',
     /*
      ** You can extend webpack config here
      */

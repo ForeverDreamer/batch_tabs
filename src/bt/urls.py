@@ -19,17 +19,20 @@ from django.urls import path, re_path, include
 # from django.conf.urls.static import static
 from django.contrib.staticfiles.views import serve
 from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 
 from .views import home_view
 
 urlpatterns = [
-    path('', home_view, name='home'),
+    # path('', TemplateView.as_view(template_name='index.html')),
+    # path('', home_view, name='home'),
+    path('', RedirectView.as_view(permanent=True, url='static/index.html')),
     # url重定向简化用户输入,以后增加其它功能模块全部要这样处理,优化用户体验
-    path('tab', RedirectView.as_view(permanent=True, url='static/ui/tab/tab.html')),
-    path('cmd', RedirectView.as_view(permanent=True, url='static/ui/cmd/cmd.html')),
+    # path('tab', RedirectView.as_view(permanent=True, url='static/ui/tab/tab.html')),
+    # path('cmd', RedirectView.as_view(permanent=True, url='static/ui/cmd/cmd.html')),
     # path('', serve, {'path': 'ui/bt/vue.html'}),
     path('favicon.ico', serve, {'path': 'image/favicon.ico'}),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('url/', include(('url.urls', 'url'), namespace='url')),
     path('cmd/', include(('cmd_tool.urls', 'cmd_tool'), namespace='cmd_tool')),
 ]

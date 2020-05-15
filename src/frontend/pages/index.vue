@@ -1,106 +1,13 @@
 <template>
   <div class="container">
-    <h1 class="text-center">欢迎使用批量打开网页工具</h1>
-    <p>请配置需要打开的网址，每个网址占一行：</p>
-    <el-form ref="form" :model="form" label-width="0px">
-      <el-form-item>
-        <el-input
-          v-model="form.textarea"
-          type="textarea"
-          :rows="22"
-          placeholder="请输入内容"
-        >
-        </el-input>
-      </el-form-item>
-      <el-form-item>
-        <div class="d-flex justify-content-around align-items-center">
-          <el-button type="primary" class="w-25" @click="openTabs">
-            批量打开网页
-          </el-button>
-          <el-button type="primary" class="w-25" @click="collectstatic">
-            collectstatic
-          </el-button>
-          <el-button type="primary" class="w-25" @click="migrate">
-            migrate
-          </el-button>
-        </div>
-      </el-form-item>
-    </el-form>
+    <h3>功能目录列表</h3>
+    <h6>
+      <span>批量打开网页：</span>
+      <nuxt-link to="/tab/">/tab/</nuxt-link>
+    </h6>
+    <h6>
+      <span>后台管理命令：</span>
+      <nuxt-link to="/cmd/">/cmd/</nuxt-link>
+    </h6>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        textarea: ''
-      }
-    }
-  },
-  mounted() {
-    this.init()
-  },
-  methods: {
-    init() {
-      this.$axios
-        .get('/url/restore/')
-        .then((response) => {
-          console.log(response)
-          const urls = response.data.urls
-          if (urls.length === 0) {
-            const placeholders = [
-              '示例网址：',
-              'https://www.sina.com.cn/',
-              'https://www.baidu.com',
-              'https://sohu.com'
-            ]
-            this.form.textarea = placeholders.join('\n')
-          } else {
-            this.form.textarea = urls.join('\n')
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    openTabs() {
-      let urls = this.form.textarea.split('\n')
-      urls = urls.map((value) => value.trim())
-      urls = urls.filter(function(value, index, array) {
-        return value !== ''
-      })
-      this.$axios
-        .post('/url/open/', { urls })
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    collectstatic() {
-      this.$axios
-        .post('/cmd/collectstatic/')
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    migrate() {
-      this.$axios
-        .post('/cmd/migrate/')
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
-}
-</script>
-
-<style></style>
