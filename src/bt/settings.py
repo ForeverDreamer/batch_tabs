@@ -132,7 +132,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'assets', "static")
 
-# 只适用于debut=True时，django会自动搜索匹配列表目录下的文件(但只搜索一层目录，不会搜索子目录)，
+# 只适用于debug=True时，django会自动搜索匹配列表目录下的文件(但只搜索一层目录，不会搜索子目录)，
 # debug=False时只能通过Apache或nginx配置路径映射
 # http://127.0.0.1:8888/static/d/d.txt，定位的是src/static/d/d.txt
 STATICFILES_DIRS = [
